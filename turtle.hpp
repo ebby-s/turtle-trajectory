@@ -10,7 +10,7 @@ private:
 	bool pen_down;  // determines whether or not to draw path of turtle
 public:
 	Turtle(){
-		pos.assign(2, 0);
+		pos.assign(2, 0);       // position and velocity are 2D vectors
 		velocity.assign(2, 0);
 		pen_down = false;
 	}
@@ -47,12 +47,15 @@ public:
 		pen_down = pen;
 	}
 	vector<float> step_time(float step_size){
-		double CONST_G_MASS = 3.986*pow(10, 14);
+		double CONST_G_MASS = 3.986*pow(10, 14);  // G * earth_mass
+		  // square of distance from center of earth
 	  double square_distance = pow(pos[0], 2) + pow(pos[1], 2);
 	  double magnitude = CONST_G_MASS / pow(square_distance, 1.5);
-		velocity[0] += pos[0]*magnitude;
+
+		velocity[0] += pos[0]*magnitude;   // update velocity
 	  velocity[1] += pos[1]*magnitude;
-		pos[0] -= velocity[0]*step_size;
+
+		pos[0] -= velocity[0]*step_size;   // update position
 		pos[1] -= velocity[1]*step_size;
 		return pos;
 	}

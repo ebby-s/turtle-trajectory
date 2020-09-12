@@ -1,15 +1,18 @@
 #include <vector>
+#include<iostream>
+
+using namespace std;
 
 class Frame{
 private:
   int width;
   int height;
-  vector<float> pixels;
+  vector<int> pixels;
 public:
-  Image(int new_width, int new_height){
+  Frame(int new_width, int new_height){
     width = new_width;
     height = new_height;
-    pixels.assign(width*height, 0);
+    pixels.assign(width*height, 1);
   }
   int get_height() const{
     return height;
@@ -17,10 +20,10 @@ public:
   int get_width() const{
     return width;
   }
-  vector<int> get_pixel(vector<int> location) const{
+  int get_pixel(vector<int> location) const{
     return pixels[location[1]*width + location[0]];
   }
-  void set_pixel(vector<int> location, float val){
+  void set_pixel(vector<int> location, int val){
     pixels[location[1]*width + location[0]] = val;
   }
   void to_pgm() const{
@@ -30,4 +33,4 @@ public:
       cout << pixels[i];
     }
   }
-}
+};

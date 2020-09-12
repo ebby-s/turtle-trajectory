@@ -1,15 +1,17 @@
 #include<vector>
 #include<cmath>
 
+using namespace std;
+
 class Turtle{
 private:
 	vector<float> pos;  // vector holds position of turtle
 	vector<float> velocity;  // vector holds velocity of turtle
 	bool pen_down;  // determines whether or not to draw path of turtle
 public:
-	Rover(){
-		pos = {0,0};
-		velocity = {0,0};
+	Turtle(){
+		pos.assign(2, 0);
+		velocity.assign(2, 0);
 		pen_down = false;
 	}
 
@@ -47,11 +49,11 @@ public:
 	vector<float> step_time(float step_size){
 		double CONST_G_MASS = 3.986*pow(10, 14);
 	  double square_distance = pow(pos[0], 2) + pow(pos[1], 2);
-	  double magnitude = CONST_G_MASS / pow(square_magnitude, 1.5);
+	  double magnitude = CONST_G_MASS / pow(square_distance, 1.5);
 		velocity[0] += pos[0]*magnitude;
 	  velocity[1] += pos[1]*magnitude;
-		pos[0] += velocity[0]*step_size;
-		pos[1] += velocity[1]*step_size;
+		pos[0] -= velocity[0]*step_size;
+		pos[1] -= velocity[1]*step_size;
 		return pos;
 	}
 };
